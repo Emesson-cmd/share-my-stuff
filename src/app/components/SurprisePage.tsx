@@ -45,6 +45,7 @@ Que esta página te abrace, te faça sorrir e te lembre: eu te amo. Hoje, amanh�
 
 Com amor,
 Seu mozão 💌
+Emesson
 `;
 
 const DEFAULT_EMOJIS = [
