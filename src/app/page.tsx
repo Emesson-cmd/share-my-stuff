@@ -1,26 +1,19 @@
-export default function Home() {
+import prisma from '@/app/lib/prisma';
+
+export default async function Home() {
+  const users = await prisma.user.findMany();
   return (
-    <div className="container mx-auto p-4">
-      <form className="flex flex-col space-y-4 max-w-sm mx-auto">
-        <h1 className="text-2xl font-bold mb-4 uppercase">Sign Up</h1>
-        <input type="text" placeholder="Email" className="border p-2 rounded" />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2 rounded"
-        />
-        <input
-          type="password"
-          placeholder="Repeat password"
-          className="border p-2 rounded"
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded uppercase font-semibold hover:bg-blue-600 transition-colors "
-        >
-          Create account
-        </button>
-      </form>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center -mt-16">
+      <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
+        Superblog
+      </h1>
+      <ol className="list-decimal list-inside font-[family-name:var(--font-geist-sans)]">
+        {users.map((user) => (
+          <li key={user.id} className="mb-2">
+            {user.name}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
