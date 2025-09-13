@@ -1,7 +1,7 @@
 import Form from 'next/form';
-import prisma from '@/app/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import prisma from '@/app/lib/prisma';
 
 export default function NewPost() {
   async function createPost(formData: FormData) {
@@ -36,6 +36,7 @@ export default function NewPost() {
             name="title"
             placeholder="Enter your post title"
             className="w-full px-4 py-2 border rounded-lg"
+            required
           />
         </div>
         <div>
@@ -48,6 +49,7 @@ export default function NewPost() {
             placeholder="Write your post content here..."
             rows={6}
             className="w-full px-4 py-2 border rounded-lg"
+            required
           />
         </div>
         <button
