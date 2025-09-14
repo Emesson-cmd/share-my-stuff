@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Providers } from './providers'; // 👈 importa o wrapper
 import Navbar from '@/app/components/features/Navbar';
 import './globals.css';
 
@@ -28,10 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <div className="flex flex-col items-center justify-center  py-2 h-[calc(100vh-65px)]">
-          {children}
-        </div>
+        <Providers>
+          <Navbar />
+          <div className="flex flex-col items-center justify-center  py-2 h-[calc(100vh-65px)]">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

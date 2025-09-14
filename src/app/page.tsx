@@ -9,10 +9,5 @@ export default async function Home() {
     redirect('/users');
   }
 
-  return (
-    <>
-      <h1 className="text-4xl font-bold mb-8 uppercase">Sign In</h1>
-      <ButtonGoogle />
-    </>
-  );
+  return <ButtonGoogle />;
 }
