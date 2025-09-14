@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import MenuClosed from '@/app/assets/icons/MenuClosed';
 import MenuOpened from '@/app/assets/icons/MenuOpened';
-import { getUserSession } from '@/app/lib/session';
+import { getUserSession } from '@/lib/session';
 import ButtonLogout from '@/app/components/features/ButtonLogout';
 
 export default async function Navbar() {
@@ -33,6 +34,13 @@ export default async function Navbar() {
           {user ? (
             <div className="ml-3 relative flex items-center gap-4">
               <div className="text-white">{user.name}</div>
+              <Image
+                src={user.image || '/vercel.svg'}
+                alt={user.name || 'User Avatar'}
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
               <ButtonLogout />
             </div>
           ) : (

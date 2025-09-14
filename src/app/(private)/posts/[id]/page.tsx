@@ -1,5 +1,5 @@
-import prisma from '@/app/lib/prisma';
 import { notFound } from 'next/navigation';
+import { postService } from '@/services/postService';
 
 export default async function Post({
   params,
@@ -7,12 +7,7 @@ export default async function Post({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const post = await prisma.post.findUnique({
-    where: { id: parseInt(id) },
-    include: {
-      author: true,
-    },
-  });
+  const post = await postService.findById(parseInt(id, 10));
 
   if (!post) {
     notFound();

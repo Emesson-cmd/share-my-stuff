@@ -1,7 +1,7 @@
 import Form from 'next/form';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import prisma from '@/app/lib/prisma';
+import { postService } from '@/services/postService';
 
 export default function NewPost() {
   async function createPost(formData: FormData) {
@@ -10,12 +10,10 @@ export default function NewPost() {
     const title = formData.get('title') as string;
     const content = formData.get('content') as string;
 
-    await prisma.post.create({
-      data: {
-        title,
-        content,
-        authorId: 1,
-      },
+    await postService.create({
+      title,
+      content,
+      authorId: 1 /* Replace with actual user ID */,
     });
 
     revalidatePath('/posts');

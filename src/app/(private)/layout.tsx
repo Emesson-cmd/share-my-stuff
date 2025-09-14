@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getUserSession } from '../lib/session';
+import { getUserSession } from '@/lib/session';
 
 export default async function PrivateLayout({
   children,
