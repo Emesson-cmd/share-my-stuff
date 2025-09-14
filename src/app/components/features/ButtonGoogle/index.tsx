@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import GoogleLogo from '@/app/assets/images/google-logo.svg';
+import Spinner from '@/app/components/ui/Spinner';
 
 export default function ButtonGoogle() {
   const [loading, setLoading] = useState(false);
@@ -51,9 +52,7 @@ export default function ButtonGoogle() {
       className="flex items-center justify-center w-full max-w-xs gap-2 px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 hover:bg-gray-50 font-medium disabled:opacity-70"
     >
       {loading ? (
-        <div className="flex items-center justify-center">
-          <div className="h-5 w-5 border-b-2 border-gray-900 rounded-full animate-spin"></div>
-        </div>
+        <Spinner />
       ) : (
         <>
           <Image

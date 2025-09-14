@@ -2,7 +2,7 @@ import Link from 'next/link';
 import MenuClosed from '@/app/assets/icons/MenuClosed';
 import MenuOpened from '@/app/assets/icons/MenuOpened';
 import { getUserSession } from '@/app/lib/session';
-import BotaoLogout from '../ButtonLogout';
+import ButtonLogout from '@/app/components/features/ButtonLogout';
 
 export default async function Navbar() {
   const user = await getUserSession();
@@ -33,12 +33,12 @@ export default async function Navbar() {
           {user ? (
             <div className="ml-3 relative flex items-center gap-4">
               <div className="text-white">{user.name}</div>
-              <BotaoLogout />
+              <ButtonLogout />
             </div>
           ) : (
             <div className="ml-3 relative">
               <Link className="text-white" href="/">
-                Entrar
+                Sign In
               </Link>
             </div>
           )}
