@@ -12,4 +12,8 @@ export const postService = {
   async create(data: { title: string; content: string; authorId: number }) {
     return postRepository.create(data);
   },
+
+  async findPostsByUserId(userId: number) {
+    return postRepository.findPostsByUserId(userId);
+  },
 };

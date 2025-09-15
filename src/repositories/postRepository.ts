@@ -8,4 +8,10 @@ export const postRepository = {
 
   create: (data: { title: string; content: string; authorId: number }) =>
     prisma.post.create({ data }),
+
+  findPostsByUserId: (userId: number) =>
+    prisma.post.findMany({
+      where: { authorId: userId },
+      include: { author: true },
+    }),
 };

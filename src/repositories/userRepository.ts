@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 
 export const userRepository = {
-  findById: (id: string) => prisma.user.findUnique({ where: { id } }),
+  findById: (id: number) => prisma.user.findUnique({ where: { id } }),
 
   findByEmail: (email: string) => prisma.user.findUnique({ where: { email } }),
 

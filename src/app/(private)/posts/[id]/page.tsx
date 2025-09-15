@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import { postService } from '@/services/postService';
+import Title from '@/app/components/ui/Spinner/Title';
 
-export default async function Post({
+export default async function PostPage({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -15,7 +16,7 @@ export default async function Post({
 
   return (
     <article className="max-w-2xl space-y-4 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="text-4xl font-bold mb-8 text-[#333333]">{post.title}</h1>
+      <Title>{post.title}</Title>
       <p className="text-gray-600 text-center">by {post.author.name}</p>
       <div className="prose prose-gray mt-8">
         {post.content || 'No content available.'}

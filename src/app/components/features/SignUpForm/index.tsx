@@ -1,7 +1,9 @@
+import Title from '../../ui/Spinner/Title';
+
 export default function SignUpForm() {
   return (
     <form className="flex flex-col space-y-4 max-w-sm mx-auto">
-      <h1 className="text-2xl font-bold mb-4 uppercase">Sign Up</h1>
+      <Title>Sign Up</Title>
       <input type="text" placeholder="Email" className="border p-2 rounded" />
       <input
         type="password"

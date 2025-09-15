@@ -12,5 +12,5 @@ export default async function PrivateLayout({
     redirect('/');
   }
 
-  return <div>{children}</div>;
+  return children;
 }

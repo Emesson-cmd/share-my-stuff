@@ -1,11 +1,10 @@
 import PostList from '@/app/components/features/PostList';
+import Title from '@/app/components/ui/Spinner/Title';
 
 export default async function Posts() {
   return (
     <>
-      <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
-        Posts
-      </h1>
+      <Title>Posts</Title>
       <PostList />
     </>
   );
