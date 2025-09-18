@@ -5,15 +5,15 @@ export const postService = {
     return postRepository.findAll();
   },
 
-  async findById(id: number) {
+  async findById(id: string) {
     return postRepository.findById(id);
   },
 
-  async create(data: { title: string; content: string; authorId: number }) {
+  async create(data: { title: string; content: string; authorId: string }) {
     return postRepository.create(data);
   },
 
-  async findPostsByUserId(userId: number) {
+  async findPostsByUserId(userId: string) {
     return postRepository.findPostsByUserId(userId);
   },
 };

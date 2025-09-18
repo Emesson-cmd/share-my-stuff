@@ -2,9 +2,16 @@ import Form from 'next/form';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { postService } from '@/services/postService';
-import Title from '@/app/components/ui/Spinner/Title';
+import Title from '@/app/components/ui/Title';
+import { getUserSession } from '@/lib/session';
 
-export default function NewPost() {
+export default async function NewPost() {
+  const user = await getUserSession();
+
+  if (!user) {
+    redirect('/');
+  }
+
   async function createPost(formData: FormData) {
     'use server';
 
@@ -14,7 +21,7 @@ export default function NewPost() {
     await postService.create({
       title,
       content,
-      authorId: 1 /* Replace with actual user ID */,
+      authorId: user.id,
     });
 
     revalidatePath('/posts');

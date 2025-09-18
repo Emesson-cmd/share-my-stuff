@@ -6,7 +6,7 @@ export default async function Home() {
   const user = await getUserSession();
 
   if (user) {
-    redirect('/users');
+    redirect('/posts');
   }
 
   return <ButtonGoogle />;

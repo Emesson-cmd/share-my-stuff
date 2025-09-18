@@ -25,13 +25,24 @@ export default async function Navbar() {
             </button>
           </div>
 
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex items-center justify-center sm:items-stretch sm:justify-start gap-8">
             <Link
               href="/"
               className="flex-shrink-0 flex items-center text-white font-bold"
             >
               Share My Stuff
             </Link>
+
+            {user && (
+              <div className="ml-3 relative flex items-center gap-4">
+                <Link href="/posts" className="text-white">
+                  Posts
+                </Link>
+                <Link href="/users" className="text-white">
+                  Authors
+                </Link>
+              </div>
+            )}
           </div>
 
           {user ? (

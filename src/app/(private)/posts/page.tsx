@@ -1,5 +1,5 @@
-import PostList from '@/app/components/features/PostList';
-import Title from '@/app/components/ui/Spinner/Title';
+import PostList from '@/app/(private)/posts/componets/PostList';
+import Title from '@/app/components/ui/Title';
 
 export default async function Posts() {
   return (

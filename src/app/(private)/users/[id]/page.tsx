@@ -1,7 +1,7 @@
 import { postRepository } from '@/repositories/postRepository';
 import { userService } from '@/services/userService';
 import Card from '../../posts/componets/PostCard';
-import Title from '@/app/components/ui/Spinner/Title';
+import Title from '@/app/components/ui/Title';
 
 export default async function UserPage({
   params,
@@ -13,19 +13,14 @@ export default async function UserPage({
     return <div>User not found</div>;
   }
 
-  const parsedId = parseInt(id, 10);
-  if (isNaN(parsedId)) {
-    return <div>User not found</div>;
-  }
-
-  const user = await userService.findById(parsedId);
+  const user = await userService.findById(id);
   if (!user) {
     return <div>User not found</div>;
   }
 
-  const posts = await postRepository.findPostsByUserId(parsedId);
+  const posts = await postRepository.findPostsByUserId(id);
   return (
-    <div className="container mx-auto p-4 h-full flex flex-col">
+    <>
       <Title>Posts by {user.name}</Title>
       {posts.length > 0 ? (
         <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
@@ -41,6 +36,6 @@ export default async function UserPage({
       ) : (
         <p>No posts found for this user.</p>
       )}
-    </div>
+    </>
   );
 }

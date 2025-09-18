@@ -14,7 +14,7 @@ export const userService = {
     return userRepository.findAll();
   },
 
-  async findById(id: number) {
+  async findById(id: string) {
     return userRepository.findById(id);
   },
 };
