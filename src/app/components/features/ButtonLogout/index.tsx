@@ -3,6 +3,8 @@
 import { signOut } from 'next-auth/react';
 import { useState } from 'react';
 import Spinner from '@/app/components/ui/Spinner';
+import { DropdownItem } from 'flowbite-react';
+import LogoutIcon from '@/app/assets/icons/LogoutIcon';
 
 export default function ButtonLogout() {
   const [loading, setLoading] = useState(false);
@@ -13,12 +15,19 @@ export default function ButtonLogout() {
   };
 
   return (
-    <button
+    <DropdownItem
       onClick={handleLogout}
-      className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
       disabled={loading}
+      className="flex items-center justify-between"
     >
-      {loading ? <Spinner /> : 'Logout'}
-    </button>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          Sign out
+          <LogoutIcon width={20} height={20} />
+        </>
+      )}
+    </DropdownItem>
   );
 }

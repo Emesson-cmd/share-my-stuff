@@ -1,71 +1,66 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import MenuClosed from '@/app/assets/icons/MenuClosed';
-import MenuOpened from '@/app/assets/icons/MenuOpened';
 import { getUserSession } from '@/lib/session';
 import ButtonLogout from '@/app/components/features/ButtonLogout';
+import {
+  Avatar,
+  Dropdown,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownItem,
+  Navbar as FlowbiteNavbar,
+  NavbarBrand,
+  NavbarToggle,
+} from 'flowbite-react';
+import NavLinks from './NavLinks';
 
 export default async function Navbar() {
   const user = await getUserSession();
 
+  if (!user) {
+    return (
+      <FlowbiteNavbar>
+        <NavbarBrand href="/">
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            Share My Stuff
+          </span>
+        </NavbarBrand>
+      </FlowbiteNavbar>
+    );
+  }
+
   return (
-    <nav className="bg-gray-800 border-b h-16">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <MenuClosed />
-              <MenuOpened />
-            </button>
-          </div>
+    <FlowbiteNavbar>
+      <NavbarBrand href="/">
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          Share My Stuff
+        </span>
+      </NavbarBrand>
 
-          <div className="flex items-center justify-center sm:items-stretch sm:justify-start gap-8">
-            <Link
-              href="/"
-              className="flex-shrink-0 flex items-center text-white font-bold"
-            >
-              Share My Stuff
-            </Link>
-
-            {user && (
-              <div className="ml-3 relative flex items-center gap-4">
-                <Link href="/posts" className="text-white">
-                  Posts
-                </Link>
-                <Link href="/users" className="text-white">
-                  Authors
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {user ? (
-            <div className="ml-3 relative flex items-center gap-4">
-              <div className="text-white">{user.name}</div>
-              <Image
-                src={user.image || '/vercel.svg'}
-                alt={user.name || 'User Avatar'}
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <ButtonLogout />
-            </div>
-          ) : (
-            <div className="ml-3 relative">
-              <Link className="text-white" href="/">
-                Sign In
-              </Link>
-            </div>
-          )}
-        </div>
+      <div className="flex md:order-2">
+        <Dropdown
+          arrowIcon={false}
+          inline
+          label={
+            <Avatar
+              alt="User settings"
+              img={user.image || '/vercel.svg'}
+              rounded
+            />
+          }
+        >
+          <DropdownHeader>
+            <span className="block text-sm">{user.name}</span>
+            <span className="block truncate text-xs font-medium">
+              {user.email}
+            </span>
+          </DropdownHeader>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownDivider />
+          <ButtonLogout />
+        </Dropdown>
+        <NavbarToggle />
       </div>
-    </nav>
+
+      <NavLinks />
+    </FlowbiteNavbar>
   );
 }

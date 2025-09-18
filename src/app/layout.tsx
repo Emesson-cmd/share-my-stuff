@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Providers>
           <Navbar />
-          <div className="flex flex-col items-center justify-center  p-4 h-[calc(100vh-65px)] overflow-auto">
+          <div className="flex flex-col items-center justify-center h-[calc(100vh-65px)] overflow-auto max-w-screen-xl mx-auto w-full">
             {children}
           </div>
         </Providers>
